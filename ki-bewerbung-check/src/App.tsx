@@ -1,5 +1,7 @@
 import "./App.css";
 import ThemeSwitch from "../components/ThemeSwitch";
+import PersonalInformation from "../pages/PersonalInformation";
+import Skills from "../pages/Skills";
 
 function App() {
   return (
@@ -8,6 +10,8 @@ function App() {
         <a className="btn btn-ghost text-3xl">EVOKE</a>
         <ThemeSwitch/>
       </div>
+      <PersonalInformation />
+      <Skills />
     </>
   );
 }
