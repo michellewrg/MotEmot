@@ -63,7 +63,7 @@ export default function PersonalInformation() {
         <label className="block font-semibold mb-1">Geschlecht*</label>
         <div className="flex gap-6">
           {["weiblich", "männlich", "divers", "keine Angabe"].map((g) => (
-            <label key={g} className="label cursor-pointer label-oklch">
+            <label key={g} className="label cursor-pointer text-base-content">
               <input
                 type="radio"
                 name="gender"
@@ -215,7 +215,7 @@ export default function PersonalInformation() {
                 checked={form.behinderung === "nein"}
                 onChange={handleChange}
               />
-              <span>Nein</span>
+              <span className="text-base-content">Nein</span>
             </label>
             <label className="label cursor-pointer flex items-center label-oklch">
               <input
@@ -226,7 +226,7 @@ export default function PersonalInformation() {
                 checked={form.behinderung === "ja"}
                 onChange={handleChange}
               />
-              <span>Ja</span>
+              <span className="text-base-content">Ja</span>
               {form.behinderung === "ja" && (
                 <input
                   type="text"
@@ -256,7 +256,7 @@ export default function PersonalInformation() {
                 checked={form.kinder === "nein"}
                 onChange={handleChange}
               />
-              <span>Nein, ich/wir lebe/leben alleine.</span>
+              <span className="text-base-content">Nein, ich/wir lebe/leben alleine.</span>
             </label>
             <label className="label cursor-pointer label-oklch">
               <input
@@ -267,7 +267,7 @@ export default function PersonalInformation() {
                 checked={form.kinder === "ja"}
                 onChange={handleChange}
               />
-              <span>Ja, Kinder leben mit mir/uns im Haushalt.</span>
+              <span className="text-base-content">Ja, Kinder leben mit mir/uns im Haushalt.</span>
             </label>
           </div>
         </div>

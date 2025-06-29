@@ -112,7 +112,7 @@ export default function Skills() {
         <label className="block font-semibold mb-1">IT-Kenntnisse*</label>
         <div className="flex flex-wrap gap-6">
           {["MS Office", "Excel", "PowerPoint", "Word", "Outlook", "Teams", "SAP", "Photoshop", "Programmieren"].map((it) => (
-            <label key={it} className="label cursor-pointer">
+            <label key={it} className="label cursor-pointer text-base-content">
               <input
                 type="checkbox"
                 name="it"
@@ -161,7 +161,7 @@ export default function Skills() {
                 checked={form.fuehrerschein === "ja"}
                 onChange={handleChange}
               />
-              <span>Ja</span>
+              <span className="text-base-content">Ja</span>
             </label>
             <label className="label cursor-pointer">
               <input
@@ -172,7 +172,7 @@ export default function Skills() {
                 checked={form.fuehrerschein === "nein"}
                 onChange={handleChange}
               />
-              <span>Nein</span>
+              <span className="text-base-content">Nein</span>
             </label>
             {form.fuehrerschein === "ja" && (
               <select
@@ -202,7 +202,7 @@ export default function Skills() {
         <label className="block font-semibold mb-1">Soft Skills</label>
         <div className="flex flex-wrap gap-6">
           {["Teamfähigkeit", "Zuverlässigkeit", "Eigeninitiative", "Kommunikationsfähigkeit", "Belastbarkeit", "Organisationstalent"].map((skill) => (
-            <label key={skill} className="label cursor-pointer">
+            <label key={skill} className="label cursor-pointer text-base-content">
               <input
                 type="checkbox"
                 name="softskills"
