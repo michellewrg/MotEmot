@@ -9,7 +9,7 @@ import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <>
-      <div className="min-h-screen min-w-screen overscroll-none">
+      <div className="min-h-screen min-w-screen overscroll-x-none">
         <div className="navbar text-white bg-accent shadow-sm justify-between">
           <a className="btn btn-ghost text-3xl">EVOKE</a>
           <ThemeSwitch />
