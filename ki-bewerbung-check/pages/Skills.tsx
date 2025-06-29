@@ -62,7 +62,7 @@ export default function Skills() {
   }
 
   return (
-    <form className="w-full p-12 space-y-6" onSubmit={handleSubmit}>
+    <form className="w-full p-12 space-y-4 2xl:space-y-6" onSubmit={handleSubmit}>
       <h2 className="text-2xl font-bold mb-4">Kenntnisse & Fähigkeiten</h2>
       {error && <div className="text-red-500 font-semibold">{error}</div>}
 
