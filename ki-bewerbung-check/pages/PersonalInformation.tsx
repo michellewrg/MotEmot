@@ -54,7 +54,7 @@ export default function PersonalInformation() {
   }
 
   return (
-    <form className="max-w-3/5 mx-auto p-6 space-y-6" onSubmit={handleSubmit}>
+    <form className="w-full p-12 space-y-6" onSubmit={handleSubmit}>
       <h2 className="text-2xl font-bold mb-4">Persönliche Angaben</h2>
       {error && <div className="text-red-500 font-semibold">{error}</div>}
 

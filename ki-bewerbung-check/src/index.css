@@ -77,3 +77,11 @@
 .label-oklch {
   color: oklch(21% 0.006 285.885);
 }
+
+.step-accent::after {
+  color: #ffffff; /* Wunschfarbe */
+}
+
+html {
+  overflow-y: hidden;
+}
