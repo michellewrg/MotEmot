@@ -3,6 +3,7 @@ import ThemeSwitch from "../components/ThemeSwitch";
 import Sidebar from "../components/Sidebar";
 import Placeholder from "../components/Placeholder";
 import PersonalInformation from "../pages/PersonalInformation";
+import Experiences from "../pages/Experiences"
 import Skills from "../pages/Skills";
 import { Routes, Route } from "react-router-dom";
 
@@ -19,11 +20,8 @@ function App() {
           <div className="flex-1">
             {/* Routes */}
             <Routes>
-              <Route path="/" element={<PersonalInformation />} />
-              <Route
-                path="/personal-information"
-                element={<PersonalInformation />}
-              />
+              <Route path="/" element={<Experiences />} />
+              <Route path="/personal-information" element={<PersonalInformation />} />
               <Route path="/skills" element={<Skills />} />
             </Routes>
           </div>

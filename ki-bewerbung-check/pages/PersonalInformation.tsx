@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function PersonalInformation() {
   const [form, setForm] = useState({
@@ -18,6 +19,7 @@ export default function PersonalInformation() {
     staatsangehoerigkeit: "",
   });
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const { name, value, type } = e.target;
@@ -50,6 +52,7 @@ export default function PersonalInformation() {
       return;
     }
     setError(null);
+    navigate("/skills");
     // ...weitere Verarbeitung...
   }
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Experiences() {
   const [form, setForm] = useState({
@@ -8,6 +9,7 @@ export default function Experiences() {
     highestEd: ""
   });
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const { name, value, type } = e.target;
@@ -35,6 +37,7 @@ export default function Experiences() {
       return;
     }
     setError(null);
+    navigate("/personal-information");
     // ...weitere Verarbeitung...
   }
 
