@@ -9,7 +9,7 @@ import annotationPlugin from 'chartjs-plugin-annotation';
 function Evaluation() {
 
   ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend, Filler, annotationPlugin);
-  const { score }: AppContextType = useContext(AppContext) as AppContextType;
+  const { score, fileAdded }: AppContextType = useContext(AppContext) as AppContextType;
   const data = {
     labels: [0,10,20,30,40,50,60,70,80,90,100],
     datasets: [
@@ -26,14 +26,19 @@ function Evaluation() {
   return (
     <div className="flex flex-col w-1/5 h-screen border-l-1 border-base-300 mt-16 p-12">
       <h2 className="text-2xl font-bold mb-4">Analyseergebnisse</h2>
-      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
+      <p>Lange Wartezeiten für Rückmeldungen waren gestern! In diesem Bereich erhalten Sie direkt Feedback darüber, wie gut ihre Chancen bei uns stehen.</p>
 
       <h3 className="text-lg font-bold my-6">Persönliche Angaben</h3>
       <FontAwesomeIcon icon={`${score >= 80 ? "face-smile" : score <= 79 && score >= 45 ? "face-meh" : "face-frown"}`} size='7x' className={`${score >= 80 ? "text-teal-500" : score <= 79 && score >= 45 ? "text-amber-500" : "text-red-500"} mb-4`} />
       <ScoreBar score={score} />
 
       <h3 className="text-lg font-bold mt-8">Persönlichkeitsanalyse</h3>
-      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
+      {fileAdded && (
+        <p>Placeholder für Persönlichkeitsanalyse.</p>
+      )}
+      {!fileAdded && (
+        <p className="text-zinc-500">Keine Daten verfügbar. Bitte laden Sie das Motivationsschreiben hoch.</p>
+      )}
 
       <h3 className="text-lg font-bold mt-8 mb-4">Vergleich zu anderen Bewerbern</h3>
       <Line data={data}  

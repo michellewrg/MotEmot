@@ -3,7 +3,10 @@ export default function updateScore (input: string, value: string, weight: numbe
     const acceptableValues = [
         "6-9 Jahre", "mehr als 10 Jahre", "", // Berufserfahrung
         "health", "construction", "finance", "environment", // Branchen
-        "haupt", "real", "ausbildung" // Highest Ed
+        "haupt", "real", "ausbildung", // Highest Ed
+        "weiblich", "divers", // Geschlecht
+        "23564", "23562", "23560", "23558", "23556", "23554", "23552", // PLZ
+        "Lübeck" // Ort
     ]
     const lastChange = lastChanges[input] || null;
     console.log(lastChange)

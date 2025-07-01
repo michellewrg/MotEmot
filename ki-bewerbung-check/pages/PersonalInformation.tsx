@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AppContext, type AppContextType } from "../context/AppProvider";
+import updateScore from "../utils/updateScore"
+
 
 export default function PersonalInformation() {
   const [form, setForm] = useState({
@@ -20,12 +23,16 @@ export default function PersonalInformation() {
   });
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { score, setScore, setFileAdded }: AppContextType = useContext(AppContext) as AppContextType;
+  const [lastChanges, setLastChanges] = useState<Record<string, string | null>>({});
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const { name, value, type } = e.target;
     if (type === "file") {
+      setFileAdded(true)
       setForm({ ...form, [name]: (e.target as HTMLInputElement).files?.[0] || null });
     } else {
+      updateScore(name, value, 4, score, setScore, lastChanges, setLastChanges);
       setForm({ ...form, [name]: value });
     }
   }
