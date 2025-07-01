@@ -18,7 +18,7 @@ function App() {
   return (
     <AppProvider>
       <div className="min-h-screen min-w-screen overscroll-x-none">
-        <div className="navbar fixed top-0 text-white bg-accent shadow-sm justify-between">
+        <div className="navbar fixed top-0 text-white bg-accent shadow-sm justify-between z-999">
           <a className="btn btn-ghost text-3xl">EVOKE</a>
           <ThemeSwitch />
         </div>
