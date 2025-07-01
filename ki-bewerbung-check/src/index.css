@@ -78,3 +78,7 @@
   color: #ffffff; /* Wunschfarbe */
 }
 
+html {
+  overflow-x: hidden;
+}
+
