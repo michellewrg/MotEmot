@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext, type AppContextType } from "../context/AppProvider";
+import updateScore from "../utils/updateScore"
 
 export default function Experiences() {
   const [form, setForm] = useState({
@@ -11,21 +12,23 @@ export default function Experiences() {
   });
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { score }: AppContextType = useContext(AppContext) as AppContextType;
+  const { score, setScore }: AppContextType = useContext(AppContext) as AppContextType;
+  const [lastChanges, setLastChanges] = useState<Record<string, string | null>>({});
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const { name, value, type } = e.target;
-    console.log(name, value, type)
     if (type === "file") {
       setForm({ ...form, [name]: (e.target as HTMLInputElement).files?.[0] || null });
     } else if (type === "checkbox" && name === "branches") {
       const checked = (e.target as HTMLInputElement).checked;
+      updateScore(name, value, 4, score, setScore, lastChanges, setLastChanges);
       setForm((prevForm) => {
         const branches = prevForm.branches as string[];
         return { ...prevForm, branches: checked ? [...branches, value] : branches.filter((v) => v !== value) };
       }); 
     }
     else {
+      updateScore(name, value, 4, score, setScore, lastChanges, setLastChanges);
       setForm({ ...form, [name]: value });
     }
   }
@@ -80,7 +83,7 @@ export default function Experiences() {
         <div className="flex-1 flex gap-x-6 gap-y-2">
           <div className="flex gap-2 flex-col">
             <label className="label cursor-pointer label-oklch">
-              <input type="checkbox" name="branches" className="checkbox checkbox-accent" value="health" checked={form.highestEd.includes("health")} onChange={handleChange} />
+              <input type="checkbox" name="branches" className="checkbox checkbox-accent" value="health" checked={form.branches.includes("health")} onChange={handleChange} />
               <span className="text-base-content">Gesundheitswesen</span>
             </label>
             <label className="label cursor-pointer label-oklch">
