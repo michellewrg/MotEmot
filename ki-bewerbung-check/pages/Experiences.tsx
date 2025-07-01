@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AppContext, type AppContextType } from "../context/AppProvider";
 
 export default function Experiences() {
   const [form, setForm] = useState({
@@ -10,6 +11,7 @@ export default function Experiences() {
   });
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { score }: AppContextType = useContext(AppContext) as AppContextType;
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const { name, value, type } = e.target;
@@ -29,6 +31,7 @@ export default function Experiences() {
   }
 
   function handleSubmit(e: React.FormEvent) {
+    console.log(score)
     e.preventDefault();
     // Pflichtfelder prüfen
     if (!form.jobExp || !form.companyNum || form.branches.length === 0 || !form.highestEd
