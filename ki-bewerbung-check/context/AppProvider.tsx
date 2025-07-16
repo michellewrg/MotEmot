@@ -5,6 +5,7 @@ export type AppContextType = {
   fileAdded: boolean;
   setScore: React.Dispatch<React.SetStateAction<number>>;
   setFileAdded: React.Dispatch<React.SetStateAction<boolean>>;
+  isFieldFlagged: (fieldName: string, lastChanges: Record<string, string | null>) => boolean;
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -15,9 +16,10 @@ const AppProvider = ({ children }: any) => {
 
     const [score, setScore] = useState<number>(100);
     const [fileAdded, setFileAdded] = useState<boolean>(false);
+    const isFieldFlagged = (fieldName: string, lastChanges: Record<string, string | null>) => lastChanges[fieldName] === "decreased";
 
     return (
-        <AppContext.Provider value={{ score, setScore, fileAdded, setFileAdded }}>
+        <AppContext.Provider value={{ score, setScore, fileAdded, setFileAdded, isFieldFlagged }}>
             {children}
         </AppContext.Provider>
     )

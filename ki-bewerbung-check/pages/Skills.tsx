@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AppContext, type AppContextType } from "../context/AppProvider";
+import updateScore from "../utils/updateScore"
 
 export default function Skills() {
   const [form, setForm] = useState({
@@ -13,12 +15,16 @@ export default function Skills() {
     anlagen: null as File | null,
   });
   const [error, setError] = useState<string | null>(null);
+  const { score, setScore }: AppContextType = useContext(AppContext) as AppContextType;
+  const [lastChanges, setLastChanges] = useState<Record<string, string | null>>({});
 
   // Sprachfelder dynamisch hinzufügen/entfernen
   function handleSprachenChange(idx: number, field: string, value: string) {
     const sprachen = [...form.sprachen];
     sprachen[idx][field as "sprache" | "niveau"] = value;
     setForm({ ...form, sprachen });
+    updateScore("sprache", value, 4, score, setScore, lastChanges, setLastChanges);
+    updateScore("niveau", value, 4, score, setScore, lastChanges, setLastChanges);
   }
   function addSprache() {
     setForm({ ...form, sprachen: [...form.sprachen, { sprache: "", niveau: "" }] });
@@ -42,6 +48,7 @@ export default function Skills() {
     if (type === "file") {
       setForm({ ...form, [name]: (e.target as HTMLInputElement).files?.[0] || null });
     } else {
+      updateScore(name, value, 4, score, setScore, lastChanges, setLastChanges);
       setForm({ ...form, [name]: value });
     }
   }

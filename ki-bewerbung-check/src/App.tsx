@@ -7,13 +7,13 @@ import Experiences from "../pages/Experiences"
 import Skills from "../pages/Skills";
 import { Routes, Route } from "react-router-dom";
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faFaceSmile, faFaceMeh, faFaceFrown } from "@fortawesome/free-solid-svg-icons";
+import { faFaceSmile, faFaceMeh, faFaceFrown, faExclamation } from "@fortawesome/free-solid-svg-icons";
 import AppProvider from "../context/AppProvider"
 
 
 function App() {
 
-  library.add(faFaceSmile, faFaceMeh, faFaceFrown)
+  library.add(faFaceSmile, faFaceMeh, faFaceFrown, faExclamation)
   
   return (
     <AppProvider>

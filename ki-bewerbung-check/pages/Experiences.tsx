@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext, type AppContextType } from "../context/AppProvider";
 import updateScore from "../utils/updateScore"
+import InputHeader from "../components/InputHeader"
 
 export default function Experiences() {
   const [form, setForm] = useState({
@@ -54,7 +55,7 @@ export default function Experiences() {
 
         {/* Berufserfahrung */}
         <div className="flex-1">
-          <label className="block font-semibold mb-1">Berufserfahrung*</label>
+          <InputHeader title={"Berufserfahrung*"} name={"jobExp"} lastChanges={lastChanges} infoContent={"Mitarbeitende in dieser Position besitzen meist mehr als 5 Jahre an Erfahrung."} />
           <select className="select select-bordered w-full" name="jobExp" value={form.jobExp} onChange={handleChange}>
             <option value="">Bitte wählen</option>
             <option>weniger als 1 Jahr</option>
@@ -77,7 +78,7 @@ export default function Experiences() {
       {/* Branchen */}
       <div className="flex flex-col gap-6">
         <div>
-          <label className="block font-semibold">In welchen Branchen haben Sie gearbeitet?*</label>        
+          <InputHeader title={"In welchen Branchen haben Sie gearbeitet?*"} name={"branches"} lastChanges={lastChanges} infoContent={"Mitarbeitende in dieser Position kommen meist aus anderen Branchen."} />    
           <p className="block italic">Markieren Sie alle Branchen die zutreffend sind. </p>          
         </div>
         <div className="flex-1 flex gap-x-6 gap-y-2">
@@ -135,7 +136,7 @@ export default function Experiences() {
       {/* Bildung */}
       <div className="flex flex-col gap-6">
         <div>
-          <label className="block font-semibold">Bitte geben Sie Ihren höchsten Bildungsabschluss an.*</label>        
+          <InputHeader title={"Bitte geben Sie Ihren höchsten Bildungsabschluss an.*"} name={"highestEd"} lastChanges={lastChanges} infoContent={"Mitarbeitende in dieser Position besitzen meist andere Qualifizierungen."} />    
         </div>
         <div className="flex-1 flex gap-x-6 gap-y-2">
           <div className="flex gap-2 flex-col">
