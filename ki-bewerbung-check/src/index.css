@@ -75,7 +75,11 @@
 }
 
 .step-accent::after {
-  color: #ffffff; /* Wunschfarbe */
+  color: #ffffff; 
+}
+
+input[type="checkbox"]:checked {
+  color: #ffffff;
 }
 
 html {

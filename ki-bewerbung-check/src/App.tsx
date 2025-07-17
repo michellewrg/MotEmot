@@ -9,12 +9,12 @@ import End from "../pages/End";
 import Debrief from "../pages/Debrief";
 import Evaluation from "../components/Evaluation";
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faFaceSmile, faFaceMeh, faFaceFrown, faExclamation } from "@fortawesome/free-solid-svg-icons";
+import { faFaceSmile, faFaceMeh, faFaceFrown, faExclamation, faFile } from "@fortawesome/free-solid-svg-icons";
 import AppProvider from "../context/AppProvider";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 
 function App() {
-  library.add(faFaceSmile, faFaceMeh, faFaceFrown, faExclamation);
+  library.add(faFaceSmile, faFaceMeh, faFaceFrown, faExclamation, faFile);
 
   const location = useLocation();
   const isRootPath = location.pathname === "/" || location.pathname === "/end" || location.pathname === "/debrief";

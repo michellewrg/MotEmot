@@ -16,9 +16,9 @@ export default function Experiences() {
   const { score, setScore }: AppContextType = useContext(AppContext) as AppContextType;
   const [lastChanges, setLastChanges] = useState<Record<string, string | null>>({});
   const weights = {
-    "jobExp": 6,
+    "jobExp": 10,
     "branches": 3,
-    "highestEd": 4
+    "highestEd": 8
   };
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
@@ -34,7 +34,7 @@ export default function Experiences() {
       }); 
     }
     else {
-      updateScore(name, value, weights[name], score, setScore, lastChanges, setLastChanges);
+      updateScore(name, value, weights[name as keyof typeof weights], score, setScore, lastChanges, setLastChanges);
       setForm({ ...form, [name]: value });
     }
   }

@@ -88,7 +88,7 @@ function Evaluation() {
                     display: true,
                     content: 'EVOKE AI', position: 'start',
                     color: 'white', backgroundColor: "#e23e53",
-                    font: { weight: 'semibold', size: '6px' }
+                    font: { weight: 600, size: 12 }
                   }
                 }
               }

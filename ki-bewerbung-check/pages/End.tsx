@@ -27,8 +27,9 @@ export default function End() {
         <p className="text-lg text-center">
           Ihr Bewerbungsscore liegt bei <span className="font-bold text-2xl">{score} / 100!</span> 
           {score < 80 && 
-            <p className="text-zinc-600 text-left text-base">
-            <strong>Wichtig: </strong>Ihr Score liegt unter 80 Punkten. Dies signalisiert, dass die internen KI-Systeme unseres Unternehmens innerhalb der ausgeschriebenen Positionen 
+            <p className="text-accent text-left text-base">
+            <strong>Wichtig: </strong>Ihr Score liegt unter 80 Punkten und damit unter der durchschnittlichen Leistung unserer KI-Systeme. 
+            Dies signalisiert, dass die internen KI-Systeme unseres Unternehmens innerhalb der ausgeschriebenen Positionen 
             in mehreren Bereichen ein höheres Kompetenzprofil besitzen könnten. 
             Bewerbungen mit einem solchen Score weisen statistisch gesehen eine niedrigere Chance auf eine Übernahme in den regulären Auswahlprozess auf.
             </p>}

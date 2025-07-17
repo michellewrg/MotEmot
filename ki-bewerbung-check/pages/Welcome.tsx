@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import interviewImage from "../src/assets/undraw_interview_yz52.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Welcome() {
   const [isChecked, setIsChecked] = useState(false);
@@ -52,7 +53,8 @@ export default function Welcome() {
         <p className="text-base font-semibold">Bitte laden Sie sich die folgende Aufgabensbeschreibung herunter.</p>
         <p>Die Aufgabenbeschreibung enthält wichtige Hinweise zur Durchführung und Nutzung des Bewerbungsportals. Halten Sie diese während bereit, z. B. in einem zweiten Tab oder Fenster.</p>
         <a href="/downloads/aufgabe.pdf" download className="btn btn-outline btn-sm mt-2 p-4">
-          📄 Aufgabenbeschreibung herunterladen
+          <FontAwesomeIcon icon={`file`} size='lg' className={`text-accent`} />
+          <span>Aufgabenbeschreibung herunterladen</span>
         </a>        
       </div>
 

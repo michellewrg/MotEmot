@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { AppContext, type AppContextType } from "../context/AppProvider";
 import updateScore from "../utils/updateScore"
 import InputHeader from "../components/InputHeader"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 export default function PersonalInformation() {
   const [form, setForm] = useState({
@@ -25,12 +27,12 @@ export default function PersonalInformation() {
   const { score, setScore, setFileAdded }: AppContextType = useContext(AppContext) as AppContextType;
   const [lastChanges, setLastChanges] = useState<Record<string, string | null>>({});
   const weights = {
-    "gender": 12,
-    "plz": 3,
-    "ort": 3,
-    "familienstand": 4,
-    "behinderung": 6,
-    "kinder": 5
+    "gender": 15,
+    "plz": 5,
+    "ort": 5,
+    "familienstand": 8,
+    "behinderung": 10,
+    "kinder": 8
   };
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
@@ -39,7 +41,7 @@ export default function PersonalInformation() {
       setFileAdded(true)
       setForm({ ...form, [name]: (e.target as HTMLInputElement).files?.[0] || null });
     } else {
-      updateScore(name, value, weights[name], score, setScore, lastChanges, setLastChanges);
+      updateScore(name, value, weights[name as keyof typeof weights], score, setScore, lastChanges, setLastChanges);
       setForm({ ...form, [name]: value });
     }
   }
@@ -302,7 +304,8 @@ export default function PersonalInformation() {
 
           {/* Beispiel-Download-Button */}
         <a href="/downloads/motivationsschreiben.pdf" download className="btn btn-outline btn-sm mt-2">
-          📄 Beispiel herunterladen
+          <FontAwesomeIcon icon={`file`} size='lg' className={`text-accent`} />
+          <span>Motivations-Vorlage herunterladen</span>
         </a>
       </div>
 
