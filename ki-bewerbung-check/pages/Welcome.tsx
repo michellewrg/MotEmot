@@ -48,6 +48,15 @@ export default function Welcome() {
         </select>
       </label>
 
+      <div className="w-1/2 space-y-2">
+        <p className="text-base font-semibold">Bitte laden Sie sich die folgende Aufgabensbeschreibung herunter.</p>
+        <p>Die Aufgabenbeschreibung enthält wichtige Hinweise zur Durchführung und Nutzung des Bewerbungsportals. Halten Sie diese während bereit, z. B. in einem zweiten Tab oder Fenster.</p>
+        <a href="/downloads/aufgabe.pdf" download className="btn btn-outline btn-sm mt-2 p-4">
+          📄 Aufgabenbeschreibung herunterladen
+        </a>        
+      </div>
+
+
       {/* Positionsauswahl */}
       <div className="w-1/2 space-y-4">
         {/* Bestätigung + Button */}
@@ -62,6 +71,7 @@ export default function Welcome() {
             Ich bestätige, dass alle folgenden Angaben der Wahrheit entsprechen.*
           </span>
         </label>
+
 
         <button
           type="button"

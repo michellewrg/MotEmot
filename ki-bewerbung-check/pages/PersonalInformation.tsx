@@ -301,13 +301,9 @@ export default function PersonalInformation() {
         />
 
           {/* Beispiel-Download-Button */}
-        <a
-          href="/downloads/motivationsschreiben.pdf"
-          download
-          className="btn btn-outline btn-sm mt-2"
-        >
+        <a href="/downloads/motivationsschreiben.pdf" download className="btn btn-outline btn-sm mt-2">
           📄 Beispiel herunterladen
-  </a>
+        </a>
       </div>
 
       <button type="submit" className="btn btn-accent text-white w-32 mt-4">
