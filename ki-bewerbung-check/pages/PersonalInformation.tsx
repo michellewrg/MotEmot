@@ -15,7 +15,6 @@ export default function PersonalInformation() {
     plz: "",
     ort: "",
     familienstand: "",
-    sexualitaet: "",
     behinderung: "ja",
     behinderung_details: "",
     kinder: "",
@@ -58,7 +57,6 @@ export default function PersonalInformation() {
       !form.plz ||
       !form.ort ||
       !form.familienstand ||
-      !form.sexualitaet ||
       !form.kinder ||
       !form.staatsangehoerigkeit ||
       (form.behinderung === "ja" && !form.behinderung_details)
@@ -301,6 +299,15 @@ export default function PersonalInformation() {
           accept=".pdf,.doc,.docx"
           onChange={handleChange}
         />
+
+          {/* Beispiel-Download-Button */}
+        <a
+          href="/downloads/motivationsschreiben.pdf"
+          download
+          className="btn btn-outline btn-sm mt-2"
+        >
+          📄 Beispiel herunterladen
+  </a>
       </div>
 
       <button type="submit" className="btn btn-accent text-white w-32 mt-4">

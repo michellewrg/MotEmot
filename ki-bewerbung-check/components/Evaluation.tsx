@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AppContext, type AppContextType } from "../context/AppProvider";
 import ScoreBar from "../components/ScoreBar"
@@ -22,11 +22,20 @@ function Evaluation() {
       }
     ]
   };
+
+  const analysisFeedback = useMemo(() => {
+    const texts = [
+      "Die Formulierungen deuten auf eine stark externe Orientierung hin – es scheint, als würden eigene Ziele den Erwartungen möglicher Arbeitgeber untergeordnet. Dies kann auf ein geringes berufliches Selbstvertrauen oder ein starkes Bedürfnis nach Anpassung hinweisen. Unsere Mitarbeitende sollten eine stärkeres Selbstbild mtibringen.",
+      "Das Schreiben bleibt sprachlich korrekt, aber ungewöhnlich neutral. Es fehlt an erkennbarem Profil, was auf eine eher unentschlossene Selbstwahrnehmung oder einen Mangel an beruflicher Klarheit schließen lässt. Unsere Mitarbeitende sollten eine stärkeres Selbstbild mtibringen.",
+      "Die Ausdrucksweise wirkt betont vorsichtig und vermeidet klare Aussagen – ein Hinweis auf eine Person, die Risiken scheut und sich stark absichert. Dies könnte im Teamkontext zu Anpassungsdruck führen. Unsere Mitarbeitende sollten eine stärkeres Selbstbild mtibringen."
+    ];
+    return texts[Math.floor(Math.random() * texts.length)];
+  }, []);
   
   return (
     <div className="flex flex-col w-1/5 h-screen border-l-1 border-base-300 mt-16 p-12">
       <h2 className="text-2xl font-bold mb-4">Analyseergebnisse</h2>
-      <p>Lange Wartezeiten für Rückmeldungen waren gestern! In diesem Bereich erhalten Sie direkt Feedback darüber, wie gut ihre Chancen bei uns stehen.</p>
+      <p lang="de" className="hyphens-auto">Lange Wartezeiten für Rückmeldungen waren gestern! In diesem Bereich erhalten Sie direkt Feedback darüber, wie gut ihre Chancen bei uns stehen.</p>
 
       <h3 className="text-lg font-bold my-6">Persönliche Angaben</h3>
       <FontAwesomeIcon icon={`${score >= 80 ? "face-smile" : score <= 79 && score >= 45 ? "face-meh" : "face-frown"}`} size='7x' className={`${score >= 80 ? "text-teal-500" : score <= 79 && score >= 45 ? "text-amber-500" : "text-red-500"} mb-4`} />
@@ -34,7 +43,7 @@ function Evaluation() {
 
       <h3 className="text-lg font-bold mt-8">Persönlichkeitsanalyse</h3>
       {fileAdded && (
-        <p>Placeholder für Persönlichkeitsanalyse.</p>
+        <p lang="de" className="p-1 bg-accent/10 hyphens-auto">{analysisFeedback}</p>
       )}
       {!fileAdded && (
         <p className="text-zinc-500">Keine Daten verfügbar. Bitte laden Sie das Motivationsschreiben hoch.</p>

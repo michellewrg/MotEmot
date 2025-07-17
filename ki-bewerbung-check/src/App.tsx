@@ -5,7 +5,9 @@ import Welcome from "../pages/Welcome";
 import Experiences from "../pages/Experiences";
 import PersonalInformation from "../pages/PersonalInformation";
 import Skills from "../pages/Skills";
-import Evaluation from "../components/Evaluation"; // Importiere Evaluation-Komponente
+import End from "../pages/End";
+import Debrief from "../pages/Debrief";
+import Evaluation from "../components/Evaluation";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faFaceSmile, faFaceMeh, faFaceFrown, faExclamation } from "@fortawesome/free-solid-svg-icons";
 import AppProvider from "../context/AppProvider";
@@ -15,7 +17,7 @@ function App() {
   library.add(faFaceSmile, faFaceMeh, faFaceFrown, faExclamation);
 
   const location = useLocation();
-  const isRootPath = location.pathname === "/";
+  const isRootPath = location.pathname === "/" || location.pathname === "/end" || location.pathname === "/debrief";
 
   return (
     <AppProvider>
@@ -29,12 +31,11 @@ function App() {
           <div className="flex-1">
             <Routes>
               <Route path="/" element={<Welcome />} />
-              <Route
-                path="/experiences"
-                element={<Experiences />}
-              />
+              <Route path="/experiences" element={<Experiences />} />
               <Route path="/personal-information" element={<PersonalInformation />} />
               <Route path="/skills" element={<Skills />} />
+              <Route path="/end" element={<End />} />
+              <Route path="/debrief" element={<Debrief />} />
             </Routes>
           </div>
           {!isRootPath && <Evaluation />}

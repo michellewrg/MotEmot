@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AppContext, type AppContextType } from "../context/AppProvider";
+import { useNavigate } from "react-router-dom";
 import updateScore from "../utils/updateScore"
 import InputHeader from "../components/InputHeader"
 
@@ -74,8 +75,13 @@ export default function Skills() {
       return;
     }
     setError(null);
-    // ...weitere Verarbeitung...
   }
+
+  const navigate = useNavigate();
+  function handleEnd() {
+    navigate("/end");
+  }
+
 
   return (
     <form className="w-full p-12 space-y-4 2xl:space-y-6 mt-16" onSubmit={handleSubmit}>
@@ -257,7 +263,7 @@ export default function Skills() {
         />
       </div>
 
-      <button type="submit" className="btn btn-accent text-white w-32 mt-4">
+      <button type="submit" className="btn btn-accent text-white w-32 mt-4" onClick={() => handleEnd()}>
         Absenden
       </button>
     </form>
