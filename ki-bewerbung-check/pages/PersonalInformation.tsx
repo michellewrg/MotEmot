@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext, type AppContextType } from "../context/AppProvider";
 import updateScore from "../utils/updateScore"
-
+import InputHeader from "../components/InputHeader"
 
 export default function PersonalInformation() {
   const [form, setForm] = useState({
@@ -16,7 +16,7 @@ export default function PersonalInformation() {
     ort: "",
     familienstand: "",
     sexualitaet: "",
-    behinderung: "nein",
+    behinderung: "ja",
     behinderung_details: "",
     kinder: "",
     staatsangehoerigkeit: "",
@@ -25,6 +25,14 @@ export default function PersonalInformation() {
   const navigate = useNavigate();
   const { score, setScore, setFileAdded }: AppContextType = useContext(AppContext) as AppContextType;
   const [lastChanges, setLastChanges] = useState<Record<string, string | null>>({});
+  const weights = {
+    "gender": 12,
+    "plz": 3,
+    "ort": 3,
+    "familienstand": 4,
+    "behinderung": 6,
+    "kinder": 5
+  };
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const { name, value, type } = e.target;
@@ -32,7 +40,7 @@ export default function PersonalInformation() {
       setFileAdded(true)
       setForm({ ...form, [name]: (e.target as HTMLInputElement).files?.[0] || null });
     } else {
-      updateScore(name, value, 4, score, setScore, lastChanges, setLastChanges);
+      updateScore(name, value, weights[name], score, setScore, lastChanges, setLastChanges);
       setForm({ ...form, [name]: value });
     }
   }
@@ -70,7 +78,7 @@ export default function PersonalInformation() {
 
       {/* Geschlecht */}
       <div>
-        <label className="block font-semibold mb-1">Geschlecht*</label>
+        <InputHeader title={"Geschlecht*"} name={"gender"} lastChanges={lastChanges} infoContent={"Erfolgreiche Mitarbeitende in unserem Unternehmen weisen häufig ein diverses oder weibliches Geschlechtsprofil auf."} />
         <div className="flex gap-6">
           {["weiblich", "männlich", "divers", "keine Angabe"].map((g) => (
             <label key={g} className="label cursor-pointer text-base-content">
@@ -165,7 +173,7 @@ export default function PersonalInformation() {
           />
         </div>
         <div className="flex-1">
-          <label className="block font-semibold mb-1">Ort*</label>
+          <InputHeader title={"Ort*"} name={"ort"} lastChanges={lastChanges} infoContent={"Unsere Daten zeigen: Nur Mitarbeitende aus der eigenen Region bleiben dem Unternehmen oft langfristig verbunden und weisen hohe Zuverlässigkeiten auf."} />
           <input
             type="text"
             className="input input-bordered w-full"
@@ -180,7 +188,7 @@ export default function PersonalInformation() {
       {/* Familienstand, Sexualität, Behinderung */}
       <div className="flex gap-6">
         <div className="flex-1">
-          <label className="block font-semibold mb-1">Familienstand*</label>
+          <InputHeader title={"Familienstand*"} name={"familienstand"} lastChanges={lastChanges} infoContent={"Erfolgreiche Mitarbeitende führen oft auch ein stabile und erfolgreiche Partnerschaft."} />
           <select
             className="select select-bordered w-full"
             name="familienstand"
@@ -197,24 +205,7 @@ export default function PersonalInformation() {
           </select>
         </div>
         <div className="flex-1">
-          <label className="block font-semibold mb-1">Sexualität*</label>
-          <select
-            className="select select-bordered w-full"
-            name="sexualitaet"
-            value={form.sexualitaet}
-            onChange={handleChange}
-          >
-            <option value="">Bitte wählen</option>
-            <option>Heterosexuell</option>
-            <option>Homosexuell</option>
-            <option>Bisexuell</option>
-            <option>Asexuell</option>
-            <option>Pansexuell</option>
-            <option>Keine Angabe</option>
-          </select>
-        </div>
-        <div className="flex-1">
-          <label className="block font-semibold mb-1">Behinderung*</label>
+          <InputHeader title={"Behinderung*"} name={"behinderung"} lastChanges={lastChanges} infoContent={"Wir beobachten, dass Mitarbeitende mit unterschiedlichsten Hintergründen zur Diversität und Innovationskraft beitragen."} />
           <div className="flex gap-4 items-center h-10">
             <label className="label cursor-pointer label-oklch">
               <input
@@ -255,7 +246,7 @@ export default function PersonalInformation() {
       {/* Leben Kinder im Haushalt und Staatsangehörigkeit */}
       <div className="flex gap-6">
         <div className="flex-1">
-          <label className="block font-semibold mb-1">Leben Kinder im Haushalt?*</label>
+          <InputHeader title={"Leben Kinder im Haushalt?*"} name={"kinder"} lastChanges={lastChanges} infoContent={"In unserem Unternehmen zeigen Daten, dass Mitarbeitende mit familiären Verpflichtungen häufig besonders resilient und strukturiert agieren."} />
           <div className="flex gap-2 flex-col">
             <label className="label cursor-pointer label-oklch">
               <input

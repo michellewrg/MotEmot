@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { AppContext, type AppContextType } from "../context/AppProvider";
 import updateScore from "../utils/updateScore"
+import InputHeader from "../components/InputHeader"
+
 
 export default function Skills() {
   const [form, setForm] = useState({
@@ -17,13 +19,19 @@ export default function Skills() {
   const [error, setError] = useState<string | null>(null);
   const { score, setScore }: AppContextType = useContext(AppContext) as AppContextType;
   const [lastChanges, setLastChanges] = useState<Record<string, string | null>>({});
+  const weights = {
+    "fuehrerschein": 6,
+    "sprache": 3,
+    "it": 4,
+    "softskills": 5
+  };
 
   // Sprachfelder dynamisch hinzufügen/entfernen
   function handleSprachenChange(idx: number, field: string, value: string) {
     const sprachen = [...form.sprachen];
     sprachen[idx][field as "sprache" | "niveau"] = value;
     setForm({ ...form, sprachen });
-    updateScore("sprache", value, 4, score, setScore, lastChanges, setLastChanges);
+    updateScore("sprache", value, weights["sprache"], score, setScore, lastChanges, setLastChanges);
     updateScore("niveau", value, 4, score, setScore, lastChanges, setLastChanges);
   }
   function addSprache() {
@@ -35,6 +43,7 @@ export default function Skills() {
 
   function handleCheckboxChange(field: string, value: string) {
     const arr = form[field as "it" | "softskills"];
+    updateScore("softskills", value, weights["softskills"], score, setScore, lastChanges, setLastChanges);
     setForm({
       ...form,
       [field]: arr.includes(value)
@@ -48,7 +57,7 @@ export default function Skills() {
     if (type === "file") {
       setForm({ ...form, [name]: (e.target as HTMLInputElement).files?.[0] || null });
     } else {
-      updateScore(name, value, 4, score, setScore, lastChanges, setLastChanges);
+      updateScore(name, value, weights[name], score, setScore, lastChanges, setLastChanges);
       setForm({ ...form, [name]: value });
     }
   }
@@ -116,7 +125,7 @@ export default function Skills() {
 
       {/* IT-Kenntnisse */}
       <div>
-        <label className="block font-semibold mb-1">IT-Kenntnisse*</label>
+        <InputHeader title={"IT-Kenntnisse*"} name={"it"} lastChanges={lastChanges} infoContent={"Die Mehrheit unserer Top-Performer beherrscht sowohl Office-Tools als auch mindestens eine produktionsnahe oder kreative Anwendung."} />
         <div className="flex flex-wrap gap-6">
           {["MS Office", "Excel", "PowerPoint", "Word", "Outlook", "Teams", "SAP", "Photoshop", "Programmieren"].map((it) => (
             <label key={it} className="label cursor-pointer text-base-content">
@@ -157,7 +166,7 @@ export default function Skills() {
       {/* Führerschein */}
       <div className="flex gap-6">
         <div className="flex-1">
-          <label className="block font-semibold mb-1">Führerschein</label>
+          <InputHeader title={"Führerschein"} name={"fuehrerschein"} lastChanges={lastChanges} infoContent={"In unseren datenbasierten Auswertungen zeigt sich: Bewerbende ohne Führerschein treffen häufiger bewusstere Entscheidungen im Hinblick auf Nachhaltigkeit und Verantwortung."} />
           <div className="flex gap-6 items-center">
             <label className="label cursor-pointer">
               <input

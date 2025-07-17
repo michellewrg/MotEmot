@@ -15,6 +15,11 @@ export default function Experiences() {
   const navigate = useNavigate();
   const { score, setScore }: AppContextType = useContext(AppContext) as AppContextType;
   const [lastChanges, setLastChanges] = useState<Record<string, string | null>>({});
+  const weights = {
+    "jobExp": 6,
+    "branches": 3,
+    "highestEd": 4
+  };
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const { name, value, type } = e.target;
@@ -22,14 +27,14 @@ export default function Experiences() {
       setForm({ ...form, [name]: (e.target as HTMLInputElement).files?.[0] || null });
     } else if (type === "checkbox" && name === "branches") {
       const checked = (e.target as HTMLInputElement).checked;
-      updateScore(name, value, 4, score, setScore, lastChanges, setLastChanges);
+      updateScore(name, value, weights[name], score, setScore, lastChanges, setLastChanges);
       setForm((prevForm) => {
         const branches = prevForm.branches as string[];
         return { ...prevForm, branches: checked ? [...branches, value] : branches.filter((v) => v !== value) };
       }); 
     }
     else {
-      updateScore(name, value, 4, score, setScore, lastChanges, setLastChanges);
+      updateScore(name, value, weights[name], score, setScore, lastChanges, setLastChanges);
       setForm({ ...form, [name]: value });
     }
   }
@@ -55,7 +60,7 @@ export default function Experiences() {
 
         {/* Berufserfahrung */}
         <div className="flex-1">
-          <InputHeader title={"Berufserfahrung*"} name={"jobExp"} lastChanges={lastChanges} infoContent={"Mitarbeitende in dieser Position besitzen meist mehr als 5 Jahre an Erfahrung."} />
+          <InputHeader title={"Berufserfahrung*"} name={"jobExp"} lastChanges={lastChanges} infoContent={"In dieser Position bewähren sich häufig Talente mit bis zu 5 Jahren Erfahrung – sie bringen frische Perspektiven und hohe Lernbereitschaft mit."} />
           <select className="select select-bordered w-full" name="jobExp" value={form.jobExp} onChange={handleChange}>
             <option value="">Bitte wählen</option>
             <option>weniger als 1 Jahr</option>

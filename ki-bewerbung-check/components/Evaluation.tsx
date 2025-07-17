@@ -66,10 +66,21 @@ function Evaluation() {
             },
             annotation: {
               annotations: {
-                vertLine: {
+                vertLine1: {
                   type: 'line',
                   xMin: score, xMax: score,
-                  borderColor: 'black', borderWidth: 3,
+                  borderColor: 'black', borderWidth: 3
+                },
+                vertLine2: {
+                  type: 'line',
+                  xMin: 75, xMax: 75,
+                  borderColor: '#e23e53', borderWidth: 3,
+                  label: {
+                    display: true,
+                    content: 'EVOKE AI', position: 'start',
+                    color: 'white', backgroundColor: "#e23e53",
+                    font: { weight: 'semibold', size: '6px' }
+                  }
                 }
               }
             }
