@@ -19,7 +19,7 @@ export default function updateScore (input: string, value: string, weight: numbe
         "Verheiratet", "In Partnerschaft", // Familienstand
         "ja", // Behinderung, Kinder
     // Skills
-        "SAP", "Programmieren", "Excel"
+        "SAP", "Programmieren", "Excel", "nicht vorhanden"
   ]
   const lastChange = lastChanges[input] || null;
   console.log(lastChange)

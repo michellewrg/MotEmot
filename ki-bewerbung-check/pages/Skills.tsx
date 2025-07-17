@@ -179,8 +179,8 @@ export default function Skills() {
                 type="radio"
                 name="fuehrerschein"
                 className="radio radio-accent"
-                value="ja"
-                checked={form.fuehrerschein === "ja"}
+                value="vorhanden"
+                checked={form.fuehrerschein === "vorhanden"}
                 onChange={handleChange}
               />
               <span className="text-base-content">Ja</span>
@@ -190,8 +190,8 @@ export default function Skills() {
                 type="radio"
                 name="fuehrerschein"
                 className="radio radio-accent"
-                value="nein"
-                checked={form.fuehrerschein === "nein"}
+                value="nicht vorhanden"
+                checked={form.fuehrerschein === "nicht vorhanden"}
                 onChange={handleChange}
               />
               <span className="text-base-content">Nein</span>
